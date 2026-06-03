@@ -8,6 +8,7 @@ A modern, interactive web application that helps users discover and assess their
 - **Smart Scoring**: Advanced scoring algorithm that computes percentile rankings and validates responses
 - **Results Dashboard**: Visual presentation of your top strengths with detailed descriptions and insights
 - **Data Persistence**: Optional profile saving with name and email
+- **Export Results**: Download your assessment results as PDF or JSON
 - **Responsive Design**: Beautiful, modern interface that works on desktop and mobile devices
 - **Dark Mode Support**: Clean aesthetic with thoughtful visual hierarchy
 
@@ -27,6 +28,7 @@ The assessment evaluates 24 character strengths organized into three dimensions:
 - Vite (build tool)
 - Tailwind CSS (styling)
 - Lucide React (icons)
+- jsPDF (PDF generation)
 - Supabase (database)
 
 ## Quick Start
@@ -58,7 +60,8 @@ VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
 2. Answer 72 questions on a 1-5 scale
 3. Save your profile (optional)
 4. View your top character strengths with detailed insights
-5. Restart to take the assessment again
+5. Download your results as PDF or JSON
+6. Restart to take the assessment again
 
 ## Project Structure
 
@@ -81,6 +84,13 @@ Results are securely stored in Supabase with:
 - 72 question responses
 - Computed strength scores
 - Percentile rankings
+
+## Export Functionality
+
+Users can download their assessment results in two formats:
+
+- **PDF**: Professional report with top 5 strengths, action plans, and complete strength rankings
+- **JSON**: Raw data export for further analysis or record-keeping
 
 ## Available Scripts
 
