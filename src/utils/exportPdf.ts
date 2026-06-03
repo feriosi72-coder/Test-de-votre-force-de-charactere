@@ -1,4 +1,4 @@
-import jsPDF from 'jspdf';
+import { jsPDF } from 'jspdf';
 import type { UserProfile } from '../types';
 import { STRENGTHS_MAP } from '../data/strengths';
 
