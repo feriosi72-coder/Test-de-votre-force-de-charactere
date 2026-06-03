@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { Sparkles, Trophy, Zap, RotateCcw, ChevronDown, ChevronUp, Star, Briefcase, Heart } from 'lucide-react';
+import { Sparkles, Trophy, Zap, RotateCcw, ChevronDown, ChevronUp, Star, Briefcase, Heart, Download, FileJson } from 'lucide-react';
 import type { StrengthScore, UserProfile } from '../types';
 import { STRENGTHS } from '../data/strengths';
+import { generatePDF, downloadAsJSON } from '../utils/exportPdf';
 
 interface ResultsProps {
   profile: UserProfile;
@@ -325,6 +326,28 @@ export default function Results({ profile, onRestart }: ResultsProps) {
                   </div>
                 );
               })}
+          </div>
+        </div>
+
+        {/* Download section */}
+        <div className="bg-white rounded-3xl border border-cream-200 shadow-sm p-8">
+          <h3 className="font-semibold text-navy-700 text-xl mb-2">Télécharger vos résultats</h3>
+          <p className="text-navy-400 text-sm mb-6">Conservez votre profil de forces pour plus tard</p>
+          <div className="grid md:grid-cols-2 gap-4">
+            <button
+              onClick={() => generatePDF(profile)}
+              className="flex items-center justify-center gap-3 px-6 py-4 bg-navy-600 text-white rounded-2xl font-medium hover:bg-navy-700 transition-all duration-200 shadow-sm hover:shadow-md"
+            >
+              <Download size={18} />
+              <span>Télécharger en PDF</span>
+            </button>
+            <button
+              onClick={() => downloadAsJSON(profile)}
+              className="flex items-center justify-center gap-3 px-6 py-4 bg-cream-200 text-navy-700 rounded-2xl font-medium hover:bg-cream-300 transition-all duration-200"
+            >
+              <FileJson size={18} />
+              <span>Télécharger en JSON</span>
+            </button>
           </div>
         </div>
 
