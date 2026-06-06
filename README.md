@@ -51,23 +51,6 @@ Ces scripts s'occupent de :
 
 ---
 
-## Installation Manuelle
-
-### Installation
-
-```bash
-npm install
-npm run dev
-```
-
-### Configuration de l'environnement
-
-Créez un fichier `.env` :
-```env
-VITE_SUPABASE_URL=votre_url_supabase
-VITE_SUPABASE_ANON_KEY=votre_cle_anon_supabase
-```
-
 ## Utilisation
 
 1. Cliquez sur "Commencer le test gratuitement" pour démarrer.
