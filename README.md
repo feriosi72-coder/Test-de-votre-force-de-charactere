@@ -31,19 +31,33 @@ The assessment evaluates 24 character strengths organized into three dimensions:
 - jsPDF (PDF generation)
 - Supabase (database)
 
-## Quick Start
+## 🚀 Installation Rapide
+
+Pour installer le projet sur un nouvel ordinateur, clonez le dépôt puis utilisez l'un des scripts d'automatisation fournis :
+
+### Sur Windows (PowerShell)
+1. Ouvrez PowerShell dans le dossier du projet.
+2. Exécutez : `./setup.ps1`
+
+### Sur Linux / macOS (Bash)
+1. Ouvrez un terminal dans le dossier du projet.
+2. Exécutez : `chmod +x setup.sh && ./setup.sh`
+
+Ces scripts s'occupent de :
+1. Vérifier si Node.js est installé.
+2. Installer toutes les dépendances (`npm install`).
+3. Vous demander vos clés Supabase pour créer automatiquement le fichier `.env`.
+4. Proposer de lancer le serveur de développement.
+
+---
+
+## Installation Manuelle
 
 ### Installation
 
 ```bash
 npm install
 npm run dev
-```
-
-### Build
-
-```bash
-npm run build
 ```
 
 ### Environment Setup
