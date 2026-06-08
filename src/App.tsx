@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import LandingPage from './components/LandingPage';
 import Questionnaire from './components/Questionnaire';
 import SaveForm from './components/SaveForm';
@@ -8,43 +8,9 @@ import { supabase } from './lib/supabase';
 import type { AppStep, Answer, UserProfile } from './types';
 
 export default function App() {
-  const [step, setStep] = useState<AppStep>(() => {
-    const saved = localStorage.getItem('forcevie_step');
-    return (saved as AppStep) || 'landing';
-  });
-  const [answers, setAnswers] = useState<Answer[]>(() => {
-    try {
-      const saved = localStorage.getItem('forcevie_app_answers');
-      return saved ? JSON.parse(saved) : [];
-    } catch {
-      return [];
-    }
-  });
-  const [profile, setProfile] = useState<UserProfile | null>(() => {
-    try {
-      const saved = localStorage.getItem('forcevie_profile');
-      return saved ? JSON.parse(saved) : null;
-    } catch {
-      return null;
-    }
-  });
-
-  // Persist state
-  useEffect(() => {
-    localStorage.setItem('forcevie_step', step);
-  }, [step]);
-
-  useEffect(() => {
-    localStorage.setItem('forcevie_app_answers', JSON.stringify(answers));
-  }, [answers]);
-
-  useEffect(() => {
-    if (profile) {
-      localStorage.setItem('forcevie_profile', JSON.stringify(profile));
-    } else {
-      localStorage.removeItem('forcevie_profile');
-    }
-  }, [profile]);
+  const [step, setStep] = useState<AppStep>('landing');
+  const [answers, setAnswers] = useState<Answer[]>([]);
+  const [profile, setProfile] = useState<UserProfile | null>(null);
 
   const handleQuestionnaireComplete = (completedAnswers: Answer[]) => {
     setAnswers(completedAnswers);
@@ -77,19 +43,10 @@ export default function App() {
     }
 
     setProfile(newProfile);
-    localStorage.removeItem('forcevie_step');
-    localStorage.removeItem('forcevie_answers');
-    localStorage.removeItem('forcevie_current_index');
-    localStorage.removeItem('forcevie_app_answers');
     setStep('results');
   };
 
   const handleRestart = () => {
-    localStorage.removeItem('forcevie_step');
-    localStorage.removeItem('forcevie_answers');
-    localStorage.removeItem('forcevie_current_index');
-    localStorage.removeItem('forcevie_app_answers');
-    localStorage.removeItem('forcevie_profile');
     setStep('landing');
     setAnswers([]);
     setProfile(null);
@@ -98,10 +55,10 @@ export default function App() {
   return (
     <>
       {step === 'landing' && (
-        <LandingPage onStart={() => setStep('questionnaire')} onReset={handleRestart} />
+        <LandingPage onStart={() => setStep('questionnaire')} />
       )}
       {step === 'questionnaire' && (
-        <Questionnaire onComplete={handleQuestionnaireComplete} onReset={handleRestart} />
+        <Questionnaire onComplete={handleQuestionnaireComplete} />
       )}
       {step === 'save' && (
         <SaveForm onSubmit={handleSaveSubmit} />

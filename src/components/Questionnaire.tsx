@@ -1,11 +1,10 @@
 import { useState, useEffect, useCallback } from 'react';
-import { ChevronLeft, ChevronRight, Sparkles, RotateCcw } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
 import { QUESTIONS } from '../data/questions';
 import type { Answer, LikertValue } from '../types';
 
 interface QuestionnaireProps {
   onComplete: (answers: Answer[]) => void;
-  onReset: () => void;
 }
 
 const LIKERT_OPTIONS: { value: LikertValue; label: string; shortLabel: string }[] = [
@@ -18,36 +17,11 @@ const LIKERT_OPTIONS: { value: LikertValue; label: string; shortLabel: string }[
 
 type Direction = 'forward' | 'backward' | null;
 
-export default function Questionnaire({ onComplete, onReset }: QuestionnaireProps) {
-  const [currentIndex, setCurrentIndex] = useState(() => {
-    const saved = localStorage.getItem('forcevie_current_index');
-    return saved ? parseInt(saved, 10) : 0;
-  });
-  
-  const [answers, setAnswers] = useState<Map<number, LikertValue>>(() => {
-    const saved = localStorage.getItem('forcevie_answers');
-    if (saved) {
-      try {
-        const parsed = JSON.parse(saved);
-        return new Map(parsed);
-      } catch (e) {
-        return new Map();
-      }
-    }
-    return new Map();
-  });
-
+export default function Questionnaire({ onComplete }: QuestionnaireProps) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [answers, setAnswers] = useState<Map<number, LikertValue>>(new Map());
   const [direction, setDirection] = useState<Direction>(null);
   const [animKey, setAnimKey] = useState(0);
-
-  // Persist state
-  useEffect(() => {
-    localStorage.setItem('forcevie_current_index', currentIndex.toString());
-  }, [currentIndex]);
-
-  useEffect(() => {
-    localStorage.setItem('forcevie_answers', JSON.stringify(Array.from(answers.entries())));
-  }, [answers]);
 
   const total = QUESTIONS.length;
   const currentQuestion = QUESTIONS[currentIndex];
@@ -81,6 +55,7 @@ export default function Questionnaire({ onComplete, onReset }: QuestionnaireProp
     }
   };
 
+  // Keyboard navigation
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if (e.key === 'ArrowRight' || e.key === 'Enter') handleNext();
@@ -91,7 +66,7 @@ export default function Questionnaire({ onComplete, onReset }: QuestionnaireProp
     };
     window.addEventListener('keydown', handler);
     return () => window.removeEventListener('keydown', handler);
-  }, [currentIndex, handleNext, navigate]);
+  });
 
   const isLastQuestion = currentIndex === total - 1;
   const animClass = direction === 'forward' ? 'animate-slide-in-right' : direction === 'backward' ? 'animate-slide-in-left' : 'animate-fade-in';
@@ -108,21 +83,10 @@ export default function Questionnaire({ onComplete, onReset }: QuestionnaireProp
               </div>
               <span className="text-xs font-semibold text-navy-500 uppercase tracking-widest">ForceVie</span>
             </div>
-            
-            <div className="flex items-center gap-4">
-              <button 
-                onClick={onReset}
-                className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-red-500 hover:text-red-700 transition-colors"
-                title="Tout recommencer et effacer la mémoire"
-              >
-                <RotateCcw size={12} />
-                Réinitialiser
-              </button>
-              <span className="text-xs font-medium text-navy-400">
-                <span className="text-navy-700 font-semibold">{currentIndex + 1}</span>
-                <span className="text-navy-300"> / {total}</span>
-              </span>
-            </div>
+            <span className="text-xs font-medium text-navy-400">
+              <span className="text-navy-700 font-semibold">{currentIndex + 1}</span>
+              <span className="text-navy-300"> / {total}</span>
+            </span>
           </div>
           <div className="w-full h-1.5 bg-cream-200 rounded-full overflow-hidden">
             <div

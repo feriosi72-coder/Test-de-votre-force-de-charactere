@@ -2,12 +2,9 @@ import { Sparkles, BookOpen, ArrowRight, CheckCircle2, Brain, Star } from 'lucid
 
 interface LandingPageProps {
   onStart: () => void;
-  onReset: () => void;
 }
 
-export default function LandingPage({ onStart, onReset }: LandingPageProps) {
-  const hasProgress = localStorage.getItem('forcevie_step') || localStorage.getItem('forcevie_answers');
-
+export default function LandingPage({ onStart }: LandingPageProps) {
   return (
     <div className="min-h-screen bg-cream-100 flex flex-col">
       {/* Header */}
@@ -19,19 +16,11 @@ export default function LandingPage({ onStart, onReset }: LandingPageProps) {
           <span className="font-display font-semibold text-navy-700 text-lg tracking-tight">ForceVie</span>
         </div>
 
-        <nav className="flex items-center gap-6">
-          <a href="#science" className="hidden md:flex text-navy-500 text-sm font-medium hover:text-navy-700 transition-colors duration-200 items-center gap-1.5">
+        <nav className="hidden md:flex items-center gap-6">
+          <a href="#science" className="text-navy-500 text-sm font-medium hover:text-navy-700 transition-colors duration-200 flex items-center gap-1.5">
             <BookOpen size={14} />
             La science des forces
           </a>
-          {hasProgress && (
-            <button 
-              onClick={onReset}
-              className="text-red-500 text-xs font-semibold hover:text-red-700 transition-colors duration-200 border border-red-200 bg-red-50 px-3 py-1.5 rounded-lg"
-            >
-              Réinitialiser tout
-            </button>
-          )}
         </nav>
       </header>
 
