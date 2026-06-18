@@ -1,37 +1,37 @@
-# ForceVie - Character Strengths Assessment
+# ForceVie - Évaluation des Forces de Caractère
 
-A modern, interactive web application that helps users discover and assess their personal character strengths using the VIA Character Strengths framework. Respond to 72 carefully crafted questions to identify your top character strengths and unlock insights into your potential.
+Une application web moderne et interactive qui aide les utilisateurs à découvrir et évaluer leurs forces de caractère personnelles en utilisant le cadre VIA Character Strengths. Répondez à 72 questions soigneusement élaborées pour identifier vos principales forces de caractère et obtenir des informations sur votre potentiel.
 
-## Features
+## Fonctionnalités
 
-- **Interactive Questionnaire**: 72 questions covering 24 character strengths across cognitive, emotional, and social dimensions
-- **Smart Scoring**: Advanced scoring algorithm that computes percentile rankings and validates responses
-- **Results Dashboard**: Visual presentation of your top strengths with detailed descriptions and insights
-- **Data Persistence**: Optional profile saving with name and email
-- **Export Results**: Download your assessment results as PDF or JSON
-- **Responsive Design**: Beautiful, modern interface that works on desktop and mobile devices
-- **Dark Mode Support**: Clean aesthetic with thoughtful visual hierarchy
+- **Questionnaire Interactif** : 72 questions couvrant 24 forces de caractère à travers les dimensions cognitive, émotionnelle et sociale
+- **Notation Intelligente** : Algorithme de notation avancé qui calcule les classements percentiles et valide les réponses
+- **Tableau de Bord des Résultats** : Présentation visuelle de vos principales forces avec des descriptions détaillées et des insights
+- **Persistance des Données** : Sauvegarde optionnelle du profil avec nom et email
+- **Export des Résultats** : Téléchargez vos résultats d'évaluation en PDF ou JSON
+- **Design Responsive** : Interface moderne et élégante qui fonctionne sur ordinateur et mobile
+- **Support du Mode Sombre** : Esthétique épurée avec une hiérarchie visuelle réfléchie
 
-## Character Strengths Assessed
+## Forces de Caractère Évaluées
 
-The assessment evaluates 24 character strengths organized into three dimensions:
+L'évaluation mesure 24 forces de caractère organisées en trois dimensions :
 
-**Cognitive Strengths:** Curiosity, Creativity, Judgment, Love of Learning, Perspective
+**Forces Cognitives :** Curiosité, Créativité, Jugement, Amour de l'Apprentissage, Perspective
 
-**Emotional Strengths:** Bravery, Perseverance, Honesty, Zest, Appreciation of Beauty
+**Forces Émotionnelles :** Bravoure, Persévérance, Honnêteté, Zest, Appreciation de la Beauté
 
-**Social Strengths:** Love, Kindness, Social Intelligence, Teamwork, Fairness, Leadership, Forgiveness, Humility, Prudence, Self-Regulation, Gratitude, Hope, Humor, Spirituality
+**Forces Sociales :** Amour, Gentillesse, Intelligence Sociale, Travail d'Équipe, Équité, Leadership, Pardon, Humilité, Prudence, Auto-régulation, Gratitude, Espoir, Humour, Spiritualité
 
-## Tech Stack
+## Stack Technique
 
 - React 18 + TypeScript
-- Vite (build tool)
+- Vite (outil de build)
 - Tailwind CSS (styling)
-- Lucide React (icons)
-- jsPDF (PDF generation)
-- Supabase (database)
+- Lucide React (icônes)
+- jsPDF (génération PDF)
+- Supabase (base de données)
 
-## Quick Start
+## Démarrage Rapide
 
 ### Installation
 
@@ -46,66 +46,66 @@ npm run dev
 npm run build
 ```
 
-### Environment Setup
+### Configuration de l'Environnement
 
-Create a `.env` file:
+Créez un fichier `.env` :
 ```env
-VITE_SUPABASE_URL=your_supabase_url
-VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+VITE_SUPABASE_URL=votre_url_supabase
+VITE_SUPABASE_ANON_KEY=votre_clé_anon_supabase
 ```
 
-## Usage
+## Utilisation
 
-1. Click "Begin Assessment" to start
-2. Answer 72 questions on a 1-5 scale
-3. Save your profile (optional)
-4. View your top character strengths with detailed insights
-5. Download your results as PDF or JSON
-6. Restart to take the assessment again
+1. Cliquez sur "Commencer l'Évaluation" pour démarrer
+2. Répondez aux 72 questions sur une échelle de 1 à 5
+3. Enregistrez votre profil (optionnel)
+4. Consultez vos principales forces de caractère avec des insights détaillés
+5. Téléchargez vos résultats en PDF ou JSON
+6. Recommencez pour refaire l'évaluation
 
-## Project Structure
+## Structure du Projet
 
 ```
 src/
-├── components/          # UI components
-├── data/               # Questions & strength definitions
-├── lib/                # Supabase client
-├── utils/              # Scoring algorithm
-├── types/              # TypeScript interfaces
-└── App.tsx             # Main component
+├── components/          # Composants UI
+├── data/               # Questions et définitions des forces
+├── lib/                # Client Supabase
+├── utils/              # Algorithme de notation
+├── types/              # Interfaces TypeScript
+└── App.tsx             # Composant principal
 
-supabase/migrations/    # Database schema
+supabase/migrations/    # Schéma de base de données
 ```
 
-## Database
+## Base de Données
 
-Results are securely stored in Supabase with:
-- User name and email
-- 72 question responses
-- Computed strength scores
-- Percentile rankings
+Les résultats sont stockés de manière sécurisée dans Supabase avec :
+- Nom et email de l'utilisateur
+- 72 réponses aux questions
+- Scores de forces calculés
+- Classements percentiles
 
-## Export Functionality
+## Fonctionnalité d'Export
 
-Users can download their assessment results in two formats:
+Les utilisateurs peuvent télécharger leurs résultats d'évaluation en deux formats :
 
-- **PDF**: Professional report with top 5 strengths, action plans, and complete strength rankings
-- **JSON**: Raw data export for further analysis or record-keeping
+- **PDF** : Rapport professionnel avec les 5 principales forces, plans d'action et classement complet des forces
+- **JSON** : Export des données brutes pour analyse approfondie ou archivage
 
-## Available Scripts
+## Scripts Disponibles
 
 ```bash
-npm run dev        # Development server
-npm run build      # Production build
-npm run preview    # Preview build
+npm run dev        # Serveur de développement
+npm run build      # Build de production
+npm run preview    # Aperçu du build
 npm run lint       # ESLint
-npm run typecheck  # TypeScript check
+npm run typecheck  # Vérification TypeScript
 ```
 
-## Browser Support
+## Support des Navigateurs
 
-Chrome/Edge 90+, Firefox 88+, Safari 14+, Mobile browsers
+Chrome/Edge 90+, Firefox 88+, Safari 14+, Navigateurs mobiles
 
-## License
+## Licence
 
 MIT
